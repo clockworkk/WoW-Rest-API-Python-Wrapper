@@ -47,6 +47,7 @@ class Realm(object):
 	def get_realm_population(self):
 		'''
 		Function definition
+		Depends on if the realm is up, should put a try catch for if the realm is up
 		@return: A string representing the realm get_realm_population
 		'''
 
@@ -81,6 +82,64 @@ class Realm(object):
 		del connected_realms[0]
 
 		return connected_realms
+
+
+	def get_battlegroup(self):
+		'''
+		Function definition
+		@return a string of what battlegroup the realm belongs to.
+		'''
+
+		# lookup the realm in the realm_relation to get the index of the realm
+		# for the query that we are going to perform on the api.
+		realm_lookup = self.__get_realm()
+
+		# Get the current stats of all realms
+		results = self.__get_realm_data(self.__base_url)
+
+		# Battlegroup that the given realm belongs to
+		return results['realms'][realm_lookup]['battlegroup']
+
+
+	def get_timezone(self):
+		'''
+		Function definition
+		@return a string that represents the timezone
+		'''
+
+
+		# lookup the realm in the realm_relation to get the index of the realm
+		# for the query that we are going to perform on the api.
+		realm_lookup = self.__get_realm()
+
+		# Get the current stats of all realms
+		results = self.__get_realm_data(self.__base_url)
+
+		# Timezone that the given realm belongs to
+		return results['realms'][realm_lookup]['timezone']
+
+
+	def get_tb_data(self):
+		'''
+		Function definition
+		'''
+		pass
+
+
+	def get_wg_data(self):
+		'''
+		Function definition
+		'''
+		pass
+
+
+
+
+
+
+
+
+
 
 
 

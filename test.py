@@ -29,7 +29,25 @@ def test_c():
 	if not test_c:
 		return "Has no connected realms or failed"
 	else:
-		return test_c
+		return "Test C has passed: connected realms: " + str(test_c)
+
+def test_d():
+	api = test_prep()
+	test_c = api.get_battlegroup()
+
+	if (test_c != ""):
+		return "Test D has passed: Battlegroup: " + test_c
+	else:
+		return "Test D has failed"
+
+def test_e():
+	api = test_prep()
+	test_d = api.get_timezone()
+
+	if (test_c != ""):
+		return "Test D has passed: Timezone: " + test_d
+	else:
+		return "Test D has failed"
 
 
 def main():
@@ -41,7 +59,13 @@ def main():
 
 	third_test = test_c()
 	print third_test
-	
+
+	fourth_test = test_d()
+	print fourth_test
+
+	fifth_test = test_e()
+	print fifth_test
+
 if __name__ == '__main__':
 	main()
 
