@@ -49,6 +49,21 @@ def test_e():
 	else:
 		return "Test D has failed"
 
+def test_f():
+	pass
+
+def test_g():
+	pass
+
+def test_h():
+	pass
+
+def test_i():
+	pass
+
+def test_j():
+	pass
+
 
 def main():
 	first_test = test_a()
