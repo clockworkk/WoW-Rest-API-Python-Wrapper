@@ -658,7 +658,7 @@ class Quest(object):
 	'''
 
 	# Class variables 
-	__base_url = "https://us.battle.net/api/wow/quests"
+	__base_url = "https://us.battle.net/api/wow/quests/"
 
 	def __init__(self, quest_id):
 		quest_id = self.quest_id
@@ -675,7 +675,7 @@ class Quest(object):
 		'''
 
 		# Function variables
-		url = __base_url + "/" + self.quest_id
+		url = __base_url + self.quest_id
 
 		# Query the api for the quest information
 		results = __get_quest_data(url)
@@ -685,7 +685,36 @@ class Quest(object):
 
 
 
+class Spell(object):
+	'''
+	Class definition
+	'''
 
+	# Class variables 
+	__base_url = "https://us.battle.net/api/wow/spell/"
+
+	def __init__(self, sell_id):
+		spell_id = self.spell_id
+
+	def __get_quest_data(self, url):
+		r = request.get(url)
+		r = r.json()
+		return r
+
+
+	def get_spell_data(self):
+		'''
+		Function definition
+		'''
+
+		# Function variables
+		url = __base_url + self.spell_id
+
+		# Query the api for the quest information
+		results = __get_quest_data(url)
+
+		# Potentially modify this to return select information
+		return results
 
 
 
