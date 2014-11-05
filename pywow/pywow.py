@@ -643,7 +643,7 @@ class PvpLeaderboard(object):
 		  '''
 
 		  # Function variables
-		  url = __base_url + "/" + self.bracket
+		  url = self.__base_url + "/" + self.bracket
 
 		  # Quert the api for pvp leaderboard 
 		  results = __get_character_data(url)
@@ -675,7 +675,7 @@ class Quest(object):
 		'''
 
 		# Function variables
-		url = __base_url + self.quest_id
+		url = self.__base_url + self.quest_id
 
 		# Query the api for the quest information
 		results = __get_quest_data(url)
@@ -708,12 +708,148 @@ class Spell(object):
 		'''
 
 		# Function variables
-		url = __base_url + self.spell_id
+		url = self.__base_url + self.spell_id
 
 		# Query the api for the quest information
 		results = __get_quest_data(url)
 
 		# Potentially modify this to return select information
+		return results
+
+
+class DataResources(object):
+	'''
+	Class definition
+	'''
+
+	# Class variables
+	__base_url = "https://us.battle.net/api/wow/data/"
+
+	def __init__(self):
+		self.data = []
+
+	def __get_resource_data(self, url):
+		r = request.get(url)
+		r = r.json()
+		return r
+
+	def get_battlegroups(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "battlegroups/"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_races(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "character/races"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_character_classes(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "character/classes"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_character_achievements(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "character/achievements"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_guild_rewards(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "guild/rewards"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_guild_perks(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "guild/perks"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_guild_achievements(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "guild/achievements"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_item_classes(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "item/classes"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_talents(self):
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "talents"
+		
+		results = __get_resource_data(url)
+
+		return results
+
+
+	def get_pet_types(self);
+		'''
+		Function definition
+		'''
+
+		url = self.__base_url + "pet/types"
+		
+		results = __get_resource_data(url)
+
 		return results
 
 
