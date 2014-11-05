@@ -1,7 +1,9 @@
-from ..pywow import Realm
+import sys
+sys.path.append("/Users/clockwork/Github/pywow")
+from pywow import pywow
 
 def test_prep():
-	api = Realm("Bloodhoof")
+	api = pywow.Realm("Bloodhoof")
 	return api
 
 def test_a():
@@ -33,24 +35,27 @@ def test_c():
 
 def test_d():
 	api = test_prep()
-	test_c = api.get_battlegroup()
+	test_d = api.get_battlegroup()
 
-	if (test_c != ""):
-		return "Test D has passed: Battlegroup: " + test_c
+	if (test_d != ""):
+		return "Test D has passed: Battlegroup: " + test_d
 	else:
 		return "Test D has failed"
 
 def test_e():
 	api = test_prep()
-	test_d = api.get_timezone()
+	test_e = api.get_timezone()
 
-	if (test_c != ""):
-		return "Test D has passed: Timezone: " + test_d
+	if (test_e != ""):
+		return "Test D has passed: Timezone: " + test_e
 	else:
 		return "Test D has failed"
 
 def test_f():
-	pass
+	api = test_prep()
+	test_f = api.get_tb_data()
+
+	return test_f
 
 def test_g():
 	pass
@@ -80,6 +85,9 @@ def main():
 
 	fifth_test = test_e()
 	print fifth_test
+
+	sixth_test = test_f()
+
 
 if __name__ == '__main__':
 	main()
