@@ -700,6 +700,39 @@ class Spell(object):
 		return results
 
 
+class Recipe(object):
+	'''
+	Class definition
+	'''
+
+	# Class variables 
+	__base_url = "https://us.battle.net/api/wow/recipe/"
+
+	def __init__(self, recipe_id):
+		recipe_id = self.recipe_id
+
+	def __get_quest_data(self, url):
+		r = request.get(url)
+		r = r.json()
+		return r
+
+
+	def get_spell_data(self):
+		'''
+		Function definition
+		'''
+
+		# Function variables
+		url = self.__base_url + self.recipe_id
+
+		# Query the api for the quest information
+		results = __get_quest_data(url)
+
+		# Potentially modify this to return select information
+		return results
+
+
+
 class DataResources(object):
 	'''
 	Class definition
