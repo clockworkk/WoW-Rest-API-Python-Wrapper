@@ -21,6 +21,24 @@ class Realm(object):
 	def __get_realm(self):
 		return self.__realms[self.name]
 
+	def __query_builder(self):
+		'''
+		Build the query string and call the query function, return only pertinent information
+		'''
+
+		# Lookup the realm in realm_relation to get the index of the realm
+		# For the query that we are going to perform on the api
+		realm_lookup = self.__get_realm()
+
+		# Query the api
+		results = self.__get_realm_data(self.__base_url)
+
+		# "Minify results"
+		results = results['realms'][realm_lookup]
+
+		# Return the new results
+		return results
+
 	def __get_realm_data(self, url):
 		r = requests.get(url)
 		r = r.json()
@@ -33,15 +51,10 @@ class Realm(object):
 		@return: True if the realm is up or False if the realm is down
 		'''
 
-		# Lookup the realm in realm_relation to get the index of the realm
-		# For the query that we are going to perform on the api
-		realm_lookup = self.__get_realm()
-
-		# Get the current stats of all realms
-		results = self.__get_realm_data(self.__base_url)
+		results = __query_builder()
 
 		# Status of the realm
-		return results['realms'][realm_lookup]['status']
+		return results['status']
 
 
 	def get_realm_population(self):
@@ -51,15 +64,10 @@ class Realm(object):
 		@return: A string representing the realm get_realm_population
 		'''
 
-		# lookup the realm in the realm_relation to get the index of the realm
-		# for the query that we are going to perform on the api.
-		realm_lookup = self.__get_realm()
-
-		# Get the current stats of all realms
-		results = self.__get_realm_data(self.__base_url)
+		results = __query_builder()
 
 		# Population of the realm
-		return results['realms'][realm_lookup]['population']
+		return results['population']
 
 
 	def get_connected_realms(self):
@@ -68,15 +76,10 @@ class Realm(object):
 		@return: an array of connected realms
 		'''
 
-		# lookup the realm in the realm_relation to get the index of the realm
-		# for the query that we are going to perform on the api.
-		realm_lookup = self.__get_realm()
-
-		# Get the current stats of all realms
-		results = self.__get_realm_data(self.__base_url)
+		results = __query_builder()
 
 		# Array of connected realms
-		connected_realms = results['realms'][realm_lookup]['connected_realms']
+		connected_realms = results['connected_realms']
 		
 		# Delete the first element of the list because it is itself
 		del connected_realms[0]
@@ -90,15 +93,10 @@ class Realm(object):
 		@return a string of what battlegroup the realm belongs to.
 		'''
 
-		# lookup the realm in the realm_relation to get the index of the realm
-		# for the query that we are going to perform on the api.
-		realm_lookup = self.__get_realm()
-
-		# Get the current stats of all realms
-		results = self.__get_realm_data(self.__base_url)
+		results = __query_builder()
 
 		# Battlegroup that the given realm belongs to
-		return results['realms'][realm_lookup]['battlegroup']
+		return results['battlegroup']
 
 
 	def get_timezone(self):
@@ -107,15 +105,10 @@ class Realm(object):
 		@return a string that represents the timezone
 		'''
 
-		# lookup the realm in the realm_relation to get the index of the realm
-		# for the query that we are going to perform on the api.
-		realm_lookup = self.__get_realm()
-
-		# Get the current stats of all realms
-		results = self.__get_realm_data(self.__base_url)
+		results = __query_builder()
 
 		# Timezone that the given realm belongs to
-		return results['realms'][realm_lookup]['timezone']
+		return results['timezone']
 
 
 	def get_tb_data(self):
@@ -126,15 +119,10 @@ class Realm(object):
 		#Function Variables
 		tb_data = {}
 
-		# lookup the realm in the realm_relation to get the index of the realm
-		# for the query that we are going to perform on the api.
-		realm_lookup = self.__get_realm()
-
-		# Get the current stats of all realms
-		results = self.__get_realm_data(self.__base_url)
+		results = __query_builder()
 
 		# Timezone that the given realm belongs to
-		results = results['realms'][realm_lookup]['tol-barad']
+		results = results['tol-barad']
 
 		next_start = results['next']
 		controlling_faction = results['controlling-faction']
@@ -178,15 +166,10 @@ class Realm(object):
 		#Function Variables
 		wg_data = {}
 
-		# lookup the realm in the realm_relation to get the index of the realm
-		# for the query that we are going to perform on the api.
-		realm_lookup = self.__get_realm()
-
-		# Get the current stats of all realms
-		results = self.__get_realm_data(self.__base_url)
+		results = __query_builder()
 
 		# Timezone that the given realm belongs to
-		results = results['realms'][realm_lookup]['wintergrasp']
+		results = results['wintergrasp']
 
 		next_start = results['next']
 		controlling_faction = results['controlling-faction']
