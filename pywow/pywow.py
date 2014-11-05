@@ -618,7 +618,38 @@ class Character(object):
 		return results
 
 
+class PvpLeaderboard(object):
+	'''
+	Class definition
+	'''
 
+	# Class Variables
+	__base_url = "https://us.battle.net/api/wow/leaderboard"
+
+	# Finsih
+	# need a try catch to make sure bracket is either: 2v2 3v3 5v5 or rbg
+	def __init__(self, bracket):
+		bracket = self.bracket
+
+	def __get_leaderboard_data(self, url):
+		r = requests.get(url)
+		r = r.json()
+		return r
+
+
+	def get_leaderboard_data(self):
+		  '''
+		  Function definition
+		  '''
+
+		  # Function variables
+		  url = __base_url + "/" + bracket
+
+		  # Quert the api for pvp leaderboard 
+		  results = __get_character_data(url)
+
+		  # potentially modify this to return select informatuon
+		  return results
 
 
 
