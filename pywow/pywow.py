@@ -643,7 +643,7 @@ class PvpLeaderboard(object):
 		  '''
 
 		  # Function variables
-		  url = __base_url + "/" + bracket
+		  url = __base_url + "/" + self.bracket
 
 		  # Quert the api for pvp leaderboard 
 		  results = __get_character_data(url)
@@ -651,6 +651,37 @@ class PvpLeaderboard(object):
 		  # potentially modify this to return select informatuon
 		  return results
 
+
+class Quest(object):
+	'''
+	Class definition
+	'''
+
+	# Class variables 
+	__base_url = "https://us.battle.net/api/wow/quests"
+
+	def __init__(self, quest_id):
+		quest_id = self.quest_id
+
+	def __get_quest_data(self, url):
+		r = request.get(url)
+		r = r.json()
+		return r
+
+
+	def get_quest_data(self):
+		'''
+		Function definition
+		'''
+
+		# Function variables
+		url = __base_url + "/" + self.quest_id
+
+		# Query the api for the quest information
+		results = __get_quest_data(url)
+
+		# Potentially modify this to return select information
+		return results
 
 
 
